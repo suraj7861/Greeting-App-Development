@@ -21,10 +21,10 @@ import com.bridgelabz.greeting.service.IGreetingService;
 @RestController
 @RequestMapping("/greeting")
 public class GreetingController {
-	
+
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
-	
+
 	@Autowired
 	private IGreetingService greetingService;
 
