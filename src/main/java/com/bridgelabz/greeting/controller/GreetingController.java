@@ -2,6 +2,7 @@ package com.bridgelabz.greeting.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgelabz.greeting.model.Greeting;
+import com.bridgelabz.greeting.service.GreetingService;
+import com.bridgelabz.greeting.service.IGreetingService;
 
 /**
  * @RestController
@@ -18,8 +21,12 @@ import com.bridgelabz.greeting.model.Greeting;
 @RestController
 @RequestMapping("/greeting")
 public class GreetingController {
+	
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
+	
+	@Autowired
+	private IGreetingService greetingService;
 
 	/**
 	 * @GetMapping: mapping HTTP GET requests onto specific handler methods
@@ -31,13 +38,19 @@ public class GreetingController {
 	}
 
 	/**
-	 * @GetMapping: mapping HTTP GET requests onto specific handlermethods
-	 * @PathVariable: method parameter should be bound to a URI templatevariable.
+	 * @GetMapping: mapping HTTP GET requests onto specific handler methods
+	 * @PathVariable: method parameter should be bound to a URI template variable.
 	 *                Supported for RequestMapping annotated handler methods.
 	 */
 	@GetMapping("/{name}")
 	public Greeting greetings(@PathVariable String name) {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
+	}
+
+	@GetMapping("/service")
+	public Greeting greeting() {
+		return greetingService.greetingMessage();
+
 	}
 
 }
