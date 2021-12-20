@@ -9,12 +9,12 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bridgelabz</groupId>
-	<artifactId>GreetingApp</artifactId>
+	<artifactId>greetingapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>GreetingApp</name>
-	<description>Demo project for Spring Boot</description>
+	<name>GreetingAppDevelopment</name>
+	<description>project for development of Greeting App</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -37,6 +37,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+			<dependency> 
+	    <groupId>org.modelmapper</groupId>
+	    <artifactId>modelmapper</artifactId>
+	    <version>2.3.7</version>
+	</dependency>
 	</dependencies>
 
 	<build>

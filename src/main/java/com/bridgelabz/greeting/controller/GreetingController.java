@@ -5,10 +5,13 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bridgelabz.greeting.dto.UserDto;
 import com.bridgelabz.greeting.model.Greeting;
 import com.bridgelabz.greeting.service.GreetingService;
 import com.bridgelabz.greeting.service.IGreetingService;
@@ -38,7 +41,6 @@ public class GreetingController {
 	}
 
 	/**
-	 * @GetMapping: mapping HTTP GET requests onto specific handler methods
 	 * @PathVariable: method parameter should be bound to a URI template variable.
 	 *                Supported for RequestMapping annotated handler methods.
 	 */
@@ -52,5 +54,11 @@ public class GreetingController {
 		return greetingService.greetingMessage();
 
 	}
+	
+    @PostMapping("/post")
+    public String greetingMessage(@RequestBody UserDto userDto) {
+        return greetingService.greetingMessageByName(userDto);
+    }
+
 
 }
