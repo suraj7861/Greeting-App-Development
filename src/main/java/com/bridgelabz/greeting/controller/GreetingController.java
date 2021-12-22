@@ -61,4 +61,10 @@ public class GreetingController {
 		return greetingService.greetingMessageByName(userDto);
 	}
 
+
+	@GetMapping("/service/{findId}")
+	public Greeting findById(@PathVariable String findId) {
+		return this.greetingService.findById(Long.parseLong(findId));
+	}
+
 }
