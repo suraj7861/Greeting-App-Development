@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgelabz.greeting.dto.UserDto;
 import com.bridgelabz.greeting.model.Greeting;
+import com.bridgelabz.greeting.model.User;
 import com.bridgelabz.greeting.service.GreetingService;
 import com.bridgelabz.greeting.service.IGreetingService;
 
@@ -27,9 +28,6 @@ public class GreetingController {
 
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
-
-	@Autowired
-	private IGreetingService greetingService;
 
 	/**
 	 * @GetMapping: mapping HTTP GET requests onto specific handler methods
@@ -49,16 +47,18 @@ public class GreetingController {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 
+	@Autowired
+	private IGreetingService greetingService;
+
 	@GetMapping("/service")
 	public Greeting greeting() {
 		return greetingService.greetingMessage();
 
 	}
-	
-    @PostMapping("/post")
-    public String greetingMessage(@RequestBody UserDto userDto) {
-        return greetingService.greetingMessageByName(userDto);
-    }
 
+	@PostMapping("/post")
+	public String greetingMessage(@RequestBody UserDto userDto) {
+		return greetingService.greetingMessageByName(userDto);
+	}
 
 }

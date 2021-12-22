@@ -1,20 +1,28 @@
 package com.bridgelabz.greeting.model;
 
-public class Greeting {
-	private long id;
-	private String content;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	/**
-	 * parameterized constructor
-	 */
-	public Greeting(long id, String content) {
-		this.id = id;
-		this.content = content;
+@Entity
+@Table(name = "GREETINGS")
+public class Greeting {
+	@Id
+	private long id;
+	private String message;
+
+	public Greeting() {
+		super();
+		id = 0;
+		message = "";
 	}
 
-	/**
-	 * generates setters and getters
-	 */
+	public Greeting(long id, String content) {
+		super();
+		this.id = id;
+		this.message = content;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -23,19 +31,12 @@ public class Greeting {
 		this.id = id;
 	}
 
-	public String getContent() {
-		return content;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setMessage(String message) {
+		this.message = message;
 	}
-
-	@Override
-	public String toString() {
-		return "Greeting [id=" + id + ", content=" + content + "]";
-	}
-	
-	
 
 }
